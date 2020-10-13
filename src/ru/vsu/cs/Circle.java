@@ -18,4 +18,3 @@ public class Circle
         return (Math.pow(x - x0, 2) + Math.pow(y - y0, 2)) <= Math.pow (r, 2);
     }
 }
-

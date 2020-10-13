@@ -15,4 +15,3 @@ public class Line
         return y > k * x + b;
     }
 }
-
