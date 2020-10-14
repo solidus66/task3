@@ -6,6 +6,8 @@ public class Main {
 
     public static void main(String[] args)
     {
+        test();
+
         Picture picture = new Picture(new Line(-1,-7), new Circle(-8, -4, 5), new Parabola(-0.25,2.5,-10.25));
 
         double x = readPointCoordinate('x');
@@ -21,9 +23,26 @@ public class Main {
     private static double readPointCoordinate(char coordinateName)
     {
         Scanner scanner = new Scanner(System.in);
+
         System.out.printf("Enter %S: ", coordinateName);
+
+        return scanner.nextDouble();
+    }
+
+    public static void test()
+    {
+        double [] coordinateX = {-5, -7, -5, -2, 2, 2};
+        double [] coordinateY = {-1, -2, 6, -7, -10, 2};
+
+        int k = 0;
+
+        Picture picture = new Picture(new Line(-1,-7), new Circle(-8, -4, 5), new Parabola(-0.25,2.5,-10.25));
+
+        while(k < 6)
         {
-            return scanner.nextDouble();
+            outputColorForPoint(coordinateX[k], coordinateY[k], picture);
+
+            k++;
         }
     }
 }

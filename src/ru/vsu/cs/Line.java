@@ -10,6 +10,7 @@ public class Line
         this.k = k;
         this.b = b;
     }
+
     public boolean isPointInside(double x, double y)
     {
         return y > k * x + b;
