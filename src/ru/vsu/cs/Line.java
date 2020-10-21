@@ -2,8 +2,8 @@ package ru.vsu.cs;
 
 public class Line
 {
-    public double k;
-    public double b;
+    private double k;
+    private double b;
 
     public Line(double k, double b)
     {

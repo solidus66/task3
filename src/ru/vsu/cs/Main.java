@@ -6,22 +6,20 @@ public class Main {
 
     public static void main(String[] args)
     {
-        Picture picture = new Picture(new Line(-1,-7), new Circle(-8, -4, 5), new Parabola(-0.25,2.5,-10.25));
-
-        test(picture);
+        Picture picture = new Picture(new Line(-1, -7), new Circle(-8, -4, 5),
+                new Parabola(-0.25, 2.5, -10.25));
 
         double x = readPointCoordinate('x');
         double y = readPointCoordinate('y');
 
-        outputColourForPoint(x, y, picture);
+        SimpleColour colour = picture.getColour(x, y);
+
+        printColourForPoint(colour);
+
+        test(picture);
     }
 
-    private static void outputColourForPoint (double x, double y, Picture picture)
-    {
-        System.out.printf("(%.1f, %.1f) The area which contains this point is %S%n", x, y, picture.getColour(x, y));
-    }
-
-    private static double readPointCoordinate(char coordinateName)
+    static double readPointCoordinate(char coordinateName)
     {
         Scanner scanner = new Scanner(System.in);
 
@@ -30,14 +28,37 @@ public class Main {
         return scanner.nextDouble();
     }
 
-    private static void test(Picture picture)
+    static void printColourForPoint(SimpleColour colour)
     {
-        double [] coordinateX = {-5, -7, -5, -2, 2, 2};
-        double [] coordinateY = {-1, -2, 6, -7, -10, 2};
+        System.out.println("The area which contains this point is " + colour);
+        System.out.println("----------TEST----------");
+    }
 
-        for (int k = 0; k <= 5; k++ )
+    static void test(Picture picture)
+    {
+        double[][] coordinates = {{-5, -7, 6, -2, 2, 2}, {-1, -2, -5, -7, -10, 2}};
+        SimpleColour[] correctResultsArray = {SimpleColour.GRAY, SimpleColour.WHITE, SimpleColour.WHITE,
+                SimpleColour.GREEN, SimpleColour.BLUE, SimpleColour.BLUE};
+
+        for (int k = 0; k <= 5; k++)
         {
-            outputColourForPoint(coordinateX[k], coordinateY[k], picture);
+            SimpleColour currentResults = picture.getColour(coordinates[0][k], coordinates[1][k]);
+            SimpleColour correctResults = correctResultsArray[k];
+
+            if (currentResults == correctResults)
+            {
+                print(currentResults, correctResults, "true");
+            }
+
+            else
+            {
+                print(currentResults, correctResults, "false");
+            }
         }
+    }
+
+    static void print(SimpleColour currentResults, SimpleColour correctResults, String testResult)
+    {
+        System.out.printf("Result is %s: %s is %s \n", testResult, currentResults, correctResults);
     }
 }
