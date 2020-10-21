@@ -16,6 +16,7 @@ public class Main {
 
         printColourForPoint(colour);
 
+        System.out.println("---------------TEST---------------");
         test(picture);
     }
 
@@ -31,7 +32,6 @@ public class Main {
     static void printColourForPoint(SimpleColour colour)
     {
         System.out.println("The area which contains this point is " + colour);
-        System.out.println("----------TEST----------");
     }
 
     static void test(Picture picture)
