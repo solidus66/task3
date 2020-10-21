@@ -47,18 +47,18 @@ public class Main {
 
             if (currentResults == correctResults)
             {
-                print(currentResults, correctResults, "true");
+                print(currentResults, correctResults, "successful");
             }
 
             else
             {
-                print(currentResults, correctResults, "false");
+                print(currentResults, correctResults, "wrong");
             }
         }
     }
 
     static void print(SimpleColour currentResults, SimpleColour correctResults, String testResult)
     {
-        System.out.printf("Result is %s: %s is %s \n", testResult, currentResults, correctResults);
+        System.out.printf("The result is %s: %s is %s \n", testResult, currentResults, correctResults);
     }
 }
