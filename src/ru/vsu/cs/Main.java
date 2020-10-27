@@ -9,15 +9,11 @@ public class Main {
         Picture picture = new Picture(new Line(-1, -7), new Circle(-8, -4, 5),
                 new Parabola(-0.25, 2.5, -10.25));
 
-        double x = readPointCoordinate('x');
-        double y = readPointCoordinate('y');
+        System.out.println("-----------------TEST-----------------");
 
-        SimpleColour colour = picture.getColour(x, y);
-
-        printColourForPoint(colour);
-
-        System.out.println("---------------TEST---------------");
         test(picture);
+
+        startProgram(picture);
     }
 
     private static double readPointCoordinate(char coordinateName)
@@ -29,6 +25,16 @@ public class Main {
         return scanner.nextDouble();
     }
 
+    private static void startProgram(Picture picture)
+    {
+        double x = readPointCoordinate('x');
+        double y = readPointCoordinate('y');
+
+        SimpleColour colour = picture.getColour(x, y);
+
+        printColourForPoint(colour);
+    }
+
     private static void printColourForPoint(SimpleColour colour)
     {
         System.out.println("The area which contains this point is " + colour);
@@ -36,23 +42,25 @@ public class Main {
 
     private static void test(Picture picture)
     {
-        double[][] coordinates = {{-5, -7, 6, -2, 2, 2}, {-1, -2, -5, -7, -10, 2}};
+        double[][] coordinates = {{-5, -1}, {-7, -2}, {6, -5}, {-2, -7}, {2, -10}, {2,2}};
         SimpleColour[] correctResultsArray = {SimpleColour.GRAY, SimpleColour.WHITE, SimpleColour.WHITE,
                 SimpleColour.GREEN, SimpleColour.BLUE, SimpleColour.BLUE};
 
-        for (int k = 0; k <= 5; k++)
+        for (int k = 0; k < coordinates.length; k++)
         {
-            SimpleColour currentResults = picture.getColour(coordinates[0][k], coordinates[1][k]);
+            SimpleColour currentResults = picture.getColour(coordinates[k][0], coordinates[k][1]);
             SimpleColour correctResults = correctResultsArray[k];
 
-            if (currentResults == correctResults)
             {
-                print(currentResults, correctResults, "successful");
-            }
+                if (currentResults == correctResults)
+                    {
+                        print(currentResults, correctResults,  "successful");
+                    }
 
-            else
-            {
-                print(currentResults, correctResults, "wrong");
+                else
+                    {
+                        print(currentResults, correctResults, "wrong");
+                    }
             }
         }
     }
