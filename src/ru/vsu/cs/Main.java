@@ -20,7 +20,7 @@ public class Main {
         test(picture);
     }
 
-    static double readPointCoordinate(char coordinateName)
+    private static double readPointCoordinate(char coordinateName)
     {
         Scanner scanner = new Scanner(System.in);
 
@@ -29,12 +29,12 @@ public class Main {
         return scanner.nextDouble();
     }
 
-    static void printColourForPoint(SimpleColour colour)
+    private static void printColourForPoint(SimpleColour colour)
     {
         System.out.println("The area which contains this point is " + colour);
     }
 
-    static void test(Picture picture)
+    private static void test(Picture picture)
     {
         double[][] coordinates = {{-5, -7, 6, -2, 2, 2}, {-1, -2, -5, -7, -10, 2}};
         SimpleColour[] correctResultsArray = {SimpleColour.GRAY, SimpleColour.WHITE, SimpleColour.WHITE,
@@ -57,7 +57,7 @@ public class Main {
         }
     }
 
-    static void print(SimpleColour currentResults, SimpleColour correctResults, String testResult)
+    private static void print(SimpleColour currentResults, SimpleColour correctResults, String testResult)
     {
         System.out.printf("The result is %s: %s is %s \n", testResult, currentResults, correctResults);
     }
