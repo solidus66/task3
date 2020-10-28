@@ -11,9 +11,17 @@ public class Main {
 
         System.out.println("-----------------TEST-----------------");
 
-        test(picture);
+        boolean testResult = test(picture);
 
-        startProgram(picture);
+        if (testResult)
+        {
+            startProgram(picture);
+        }
+        else
+        {
+            System.out.println(' ');
+            System.out.println("Test failed. Find the mistakes and try again.");
+        }
     }
 
     private static double readPointCoordinate(char coordinateName)
@@ -40,11 +48,13 @@ public class Main {
         System.out.println("The area which contains this point is " + colour);
     }
 
-    private static void test(Picture picture)
+    private static boolean test(Picture picture)
     {
-        double[][] coordinates = {{-5, -1}, {-7, -2}, {6, -5}, {-2, -7}, {2, -10}, {2,2}};
+        double[][] coordinates = {{-5, -1}, {-7, -2}, {6, -5}, {-2, -7}, {2, -10}, {2, 2}};
         SimpleColour[] correctResultsArray = {SimpleColour.GRAY, SimpleColour.WHITE, SimpleColour.WHITE,
                 SimpleColour.GREEN, SimpleColour.BLUE, SimpleColour.BLUE};
+
+        boolean testResult = true;
 
         for (int k = 0; k < coordinates.length; k++)
         {
@@ -53,16 +63,17 @@ public class Main {
 
             {
                 if (currentResults == correctResults)
-                    {
-                        print(currentResults, correctResults,  "successful");
-                    }
-
+                {
+                    print(currentResults, correctResults, "successful");
+                }
                 else
-                    {
-                        print(currentResults, correctResults, "wrong");
-                    }
+                {
+                    print(currentResults, correctResults, "wrong");
+                    testResult = false;
+                }
             }
         }
+        return testResult;
     }
 
     private static void print(SimpleColour currentResults, SimpleColour correctResults, String testResult)
