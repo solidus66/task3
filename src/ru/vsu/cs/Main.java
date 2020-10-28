@@ -9,19 +9,22 @@ public class Main {
         Picture picture = new Picture(new Line(-1, -7), new Circle(-8, -4, 5),
                 new Parabola(-0.25, 2.5, -10.25));
 
-        System.out.println("-----------------TEST-----------------");
+        System.out.println("---------------------------------------TEST---------------------------------------");
 
         boolean testResult = test(picture);
 
         if (testResult)
         {
+            System.out.println(' ');
+            System.out.println("Everything is OK. Enter coordinates.");
             startProgram(picture);
         }
         else
         {
             System.out.println(' ');
-            System.out.println("Test failed. Find the mistakes and try again.");
+            System.out.println("Test failed. Find mistakes and try again.");
         }
+
     }
 
     private static double readPointCoordinate(char coordinateName)
@@ -50,7 +53,9 @@ public class Main {
 
     private static boolean test(Picture picture)
     {
-        double[][] coordinates = {{-5, -1}, {-7, -2}, {6, -5}, {-2, -7}, {2, -10}, {2, 2}};
+        Point[] coordinates = {new Point(-5, -1), new Point(-7, -2), new Point(6, -5),
+                new Point(-2, -7), new Point(2, -10), new Point(2, 2)};
+
         SimpleColour[] correctResultsArray = {SimpleColour.GRAY, SimpleColour.WHITE, SimpleColour.WHITE,
                 SimpleColour.GREEN, SimpleColour.BLUE, SimpleColour.BLUE};
 
@@ -58,17 +63,17 @@ public class Main {
 
         for (int k = 0; k < coordinates.length; k++)
         {
-            SimpleColour currentResults = picture.getColour(coordinates[k][0], coordinates[k][1]);
+            SimpleColour currentResults = picture.getColour(coordinates[k].x, coordinates[k].y);
             SimpleColour correctResults = correctResultsArray[k];
 
             {
                 if (currentResults == correctResults)
                 {
-                    print(currentResults, correctResults, "successful");
+                    print(coordinates[k],currentResults, correctResults,"successful");
                 }
                 else
                 {
-                    print(currentResults, correctResults, "wrong");
+                    print(coordinates[k],currentResults, correctResults,"wrong");
                     testResult = false;
                 }
             }
@@ -76,8 +81,9 @@ public class Main {
         return testResult;
     }
 
-    private static void print(SimpleColour currentResults, SimpleColour correctResults, String testResult)
+    private static void print(Point point,SimpleColour currentResults, SimpleColour correctResults, String testResult)
     {
-        System.out.printf("The result is %s: %s is %s \n", testResult, currentResults, correctResults);
+        System.out.printf("For coordinates (%.0f;%.0f) the result is %s; Expected: %s -> Тhe result is %s \n",
+                point.X(), point.Y(), testResult, currentResults, correctResults);
     }
 }
